@@ -1,8 +1,11 @@
 from flask import Flask , render_template ,jsonify,request
 import google.generativeai as genai
 from google.ai.generativelanguage_v1beta.types import content
+import os
 
-genai.configure(api_key="AIzaSyBJRmoZEAeGVgKwE5e_q5UJdZ1W6_ExCMQ")
+api_key=os.getenv("GEMINI_KEY")
+
+genai.configure(api_key=api_key)
 
 # Create the model
 generation_config = {
