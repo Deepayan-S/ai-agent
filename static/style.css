@@ -52,14 +52,14 @@ input,textarea{
     justify-content: center;
 }
 .chat-bubble{
-    overflow: hidden;
-    scrollbar-width: none;
     position: relative;
     background-color: #182036;
     border-radius: 96px;
     border-bottom-right-radius: 0px;
     padding: 1em;
     background-clip: padding-box;
+    overflow: hidden !important;
+    scrollbar-width: none !important;
 }
 .chat-bubble::after{
     position: absolute;
