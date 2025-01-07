@@ -52,6 +52,7 @@ input,textarea{
     justify-content: center;
 }
 .chat-bubble{
+    overflow: hidden;
     position: relative;
     background-color: #182036;
     border-radius: 96px;
