@@ -16,7 +16,7 @@ function createMessageBubble(message){
     const newChat = document.getElementById("chat-area"); 
     const chatRow = document.createElement('div');
     chatRow.className = 'chat-row';
-    chatRow.innerHTML = `<pre class="chat-bubble" style="overflow:hidden;>${message}</pre>`;
+    chatRow.innerHTML = `<p class="chat-bubble" style="overflow:hidden;>${message}</p>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
     //console.log(message);
@@ -26,7 +26,7 @@ function createAIResponse(message){
     const newChat = document.getElementById("chat-area"); 
     const chatRow = document.createElement('div');
     chatRow.className = 'chat-ai-row';
-    chatRow.innerHTML = `<pre class="chat-ai-response" style="overflow:hidden;>${message}</pre>`;
+    chatRow.innerHTML = `<pre class="chat-ai-response">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
     //console.log(message);
