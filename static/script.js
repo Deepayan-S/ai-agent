@@ -16,7 +16,7 @@ function createMessageBubble(message){
     const newChat = document.getElementById("chat-area"); 
     const chatRow = document.createElement('div');
     chatRow.className = 'chat-row';
-    chatRow.innerHTML = `<pre class="chat-bubble">${message}</pre>`;
+    chatRow.innerHTML = `<pre class="chat-bubble" style="overflow: visible;">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
     //console.log(message);
