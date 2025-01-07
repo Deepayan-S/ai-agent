@@ -58,6 +58,7 @@ input,textarea{
     border-bottom-right-radius: 0px;
     padding: 1em;
     background-clip: padding-box;
+    scrollbar-width: none;
 }
 .chat-bubble::after{
     position: absolute;
