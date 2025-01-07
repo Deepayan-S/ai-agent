@@ -58,8 +58,6 @@ input,textarea{
     border-bottom-right-radius: 0px;
     padding: 1em;
     background-clip: padding-box;
-    overflow: hidden !important;
-    scrollbar-width: none !important;
 }
 .chat-bubble::after{
     position: absolute;
@@ -70,8 +68,6 @@ input,textarea{
     z-index: -1;
     border-radius: 96px;
     border-bottom-right-radius: 0px;
-    overflow: hidden;
-    scrollbar-width: none;
 }
 .chat-row{
     display: flex;
@@ -114,4 +110,8 @@ input,textarea{
     width: 100%;
     padding: 1em;
     color: #fff;
+}
+pre{
+    overflow: hidden !important;
+    scrollbar-width: none !important;
 }
