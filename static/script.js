@@ -26,7 +26,7 @@ function createAIResponse(message){
     const newChat = document.getElementById("chat-area"); 
     const chatRow = document.createElement('div');
     chatRow.className = 'chat-ai-row';
-    chatRow.innerHTML = `<pre class="chat-ai-response">${message}</pre>`;
+    chatRow.innerHTML = `<pre class="chat-ai-response" style="overflow:hidden;>${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
     //console.log(message);

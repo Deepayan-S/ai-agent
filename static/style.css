@@ -111,7 +111,3 @@ input,textarea{
     padding: 1em;
     color: #fff;
 }
-pre{
-    overflow: hidden !important;
-    scrollbar-width: none !important;
-}
