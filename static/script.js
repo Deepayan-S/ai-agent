@@ -34,7 +34,7 @@ function createAIResponse(message){
     //console.log(message);
 
 
-    const textToSpeech = require('@google-cloud/text-to-speech');
+    const textToSpeech = require('@https://texttospeech.googleapis.com/v1/voices');
 
     const fs = require('fs');
     
@@ -48,7 +48,7 @@ function createAIResponse(message){
     
     input: { text: message },
     
-    voice: { languageCode: 'en-GB',voicename: "en-GB-Neural2-D", ssmlGender: 'MALE' },
+    voice: { languageCode: 'en-GB',name: "en-GB-Neural2-D", ssmlGender: 'MALE' },
     
     audioConfig: { audioEncoding: 'MP3' },
     
