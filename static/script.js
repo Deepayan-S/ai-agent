@@ -37,7 +37,7 @@ function createAIResponse(message){
     }
     utterThis.pitch = 1;
     utterThis.rate = 1;
-    window.speechSynthesis.speak(utterThis);
+    speechSynthesis.speak(utterThis);
     }
     //console.log(message);
 
