@@ -29,7 +29,7 @@ function createAIResponse(message){
     chatRow.innerHTML = `<pre class="chat-ai-response pre-wrap">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
-    const utterance = new SpeechSynthesisUtterance();
+    const utterance = new SpeechSynthesisUtterance(message);
     const SpeechSynthis = window.speechSynthesis;
     SpeechSynthis.speak(utterance);
     }
