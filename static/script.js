@@ -30,9 +30,16 @@ function createAIResponse(message){
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
     const utterThis = new SpeechSynthesisUtterance(message);
-    speechSynthesis.speak(utterThis);    
+    for (const voice in voices){
+        if (voice.name === "en-GB-Journey-D"){
+            utterThis.voice = voice;
+        }
+    }
+    utterThis.pitch = 1;
+    utterThis.rate = 1;
+    synth.speak(utterThis);
+    }
     //console.log(message);
-}
 
 function getResponse(prompt){
     $.ajax({
