@@ -29,40 +29,10 @@ function createAIResponse(message){
     chatRow.innerHTML = `<pre class="chat-ai-response pre-wrap">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
-    convertTextToSpeech(message);
+    const utterance = new SpeechSynthesisUtterance();
+    const SpeechSynthis = window.speechSynthesis;
+    SpeechSynthis.speak(utterance);
     }
-    //console.log(message);
-
-
-    const textToSpeech = require('@https://texttospeech.googleapis.com/v1/voices');
-
-    const fs = require('fs');
-    
-    const util = require('util');
-    
-    async function convertTextToSpeech(message) {
-    
-    const client = new textToSpeech.TextToSpeechClient();
-    
-    const request = {
-    
-    input: { text: message },
-    
-    voice: { languageCode: 'en-GB',name: "en-GB-Neural2-D", ssmlGender: 'MALE' },
-    
-    audioConfig: { audioEncoding: 'MP3' },
-    
-    };
-    
-    const [response] = await client.synthesizeSpeech(request);
-    
-    const writeFile = util.promisify(fs.writeFile);
-    
-    await writeFile('output.mp3', response.audioContent, 'binary');
-    
-    console.log('Audio content written to file "output.mp3"');
-    
-    }  
 
 function getResponse(prompt){
     $.ajax({
