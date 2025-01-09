@@ -29,15 +29,15 @@ function createAIResponse(message){
     chatRow.innerHTML = `<pre class="chat-ai-response pre-wrap">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
-    const utterThis = new SpeechSynthesisUtterance(message);
+    var utterThis = new SpeechSynthesisUtterance(message);
     for (const voice in voices){
-        if (voice.name === "en-GB-Journey-D"){
+        if (voice.name === "Microsoft Mark - English (United States)"){
             utterThis.voice = voice;
         }
     }
     utterThis.pitch = 1;
     utterThis.rate = 1;
-    speechSynthesis.speak(utterThis);
+    window.speechSynthesis.speak(utterThis);
     }
     //console.log(message);
 
