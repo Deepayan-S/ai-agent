@@ -29,10 +29,20 @@ function createAIResponse(message){
     chatRow.innerHTML = `<pre class="chat-ai-response pre-wrap">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
-    const utterance = new SpeechSynthesisUtterance(message);
-    const SpeechSynthis = window.speechSynthesis;
-    SpeechSynthis.speak(utterance);
     }
+
+function speechSynthesis(message){
+    const voices = [];
+    const synth = window.speechSynthesis;
+    voices = synth.getVoices();
+    const utterThis = new SpeechSynthesisUtterance(message);
+    for (const voice of voices){
+        if (voice.name === "Microsoft Mark - English (United States)"){
+            utterThis.voice = voice;
+        }
+    }
+    synth.speak(utterThis);
+}
 
 function getResponse(prompt){
     $.ajax({
