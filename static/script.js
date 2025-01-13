@@ -36,7 +36,7 @@ function createAIResponse(message){
     
 function speechSynthesis(message) {
     let voices = [];
-    const synth = window.speechSynthesis();
+    const synth = window.speechSynthesis;
     voices =  synth.getVoices();
     const utterThis = new SpeechSynthesisUtterance(message);
     console.log(voices);
