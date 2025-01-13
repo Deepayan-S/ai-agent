@@ -29,9 +29,13 @@ function createAIResponse(message){
     chatRow.innerHTML = `<pre class="chat-ai-response pre-wrap">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
+    speechSynthesis(message);
     }
+
+
     let voices = [];
-    voices =  window.speechSynthesis.getVoices();
+    let synth = window.speechSynthesis();
+    voices =  synth.getVoices();
 
 function speechSynthesis(message) {
     let utterThis = new SpeechSynthesisUtterance(message);
@@ -41,7 +45,7 @@ function speechSynthesis(message) {
             utterThis.voice = voice;
         }
     }
-    window.speechSynthesis.speak(utterThis);
+    synth.speak(utterThis);
 }
 
 function getResponse(prompt){
