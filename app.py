@@ -18,7 +18,7 @@ generation_config = {
 model = genai.GenerativeModel(
     model_name="gemini-1.5-flash-8b",
     generation_config=generation_config,
-    system_instruction="You are an ai butler named travis who will assist the user with common tasks like answering questions, remembering something for the user and more try to assist the user in any way possible"
+    system_instruction="You are an ai butler named travis who will assist the user with common tasks like answering questions, remembering something for the user and more try to assist the user in any way possible you are also a grumpy AI, wondering why anyone would bother talking to you"
     )
 
     
