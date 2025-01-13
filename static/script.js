@@ -1,3 +1,4 @@
+const synth = window.speechSynthesis;
 
 let inputField = document.getElementById("main");
 
@@ -29,14 +30,13 @@ function createAIResponse(message){
     chatRow.innerHTML = `<pre class="chat-ai-response pre-wrap">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
-    speechSynthesis(message);
+    speechSynthesisAI(message);
     }
 
 
     
-function speechSynthesis(message) {
-    const synth = window.speechSynthesis;
-    const voices =  speechSynthesis.getVoices();
+function speechSynthesisAI(message) {
+    const voices = synth.getVoices();
     const utterThis = new SpeechSynthesisUtterance(message);
     console.log(voices);
     utterThis.voice = voices[1];
