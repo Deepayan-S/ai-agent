@@ -31,17 +31,17 @@ function createAIResponse(message){
     newChat.scrollTop = newChat.scrollHeight;
     }
     let voices = [];
-    let synth = window.speechSynthesis;
-    voices = synth.getVoices();
+    voices =  window.speechSynthesis.getVoices();
 
 function speechSynthesis(message) {
     let utterThis = new SpeechSynthesisUtterance(message);
-    for (let voice of voices){
-        if (voice.name === "Google UK English Male"){
+    for (const voice of voices){
+        if (voice.name == "Google UK English Male"){
+            console.log(voice);
             utterThis.voice = voice;
         }
     }
-    synth.speak(utterThis);
+    window.speechSynthesis.speak(utterThis);
 }
 
 function getResponse(prompt){
