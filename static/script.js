@@ -39,7 +39,7 @@ function speechSynthesisAI(message) {
     const voices = synth.getVoices();
     const utterThis = new SpeechSynthesisUtterance(message);
     console.log(voices);
-    utterThis.voice = voices[3];
+    utterThis.voice = voices[1];
     synth.speak(utterThis);
 }
 
