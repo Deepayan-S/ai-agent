@@ -36,15 +36,11 @@ function createAIResponse(message){
     
 function speechSynthesis(message) {
     let voices = [];
-    let synth = window.speechSynthesis();
+    const synth = window.speechSynthesis();
     voices =  synth.getVoices();
-    let utterThis = new SpeechSynthesisUtterance(message);
-    for (const voice of voices){
-        if (voice.name == "Google UK English Male"){
-            console.log(voice);
-            utterThis.voice = voice;
-        }
-    }
+    const utterThis = new SpeechSynthesisUtterance(message);
+    console.log(voices);
+    utterThis.voice = voices[1];
     synth.speak(utterThis);
 }
 
