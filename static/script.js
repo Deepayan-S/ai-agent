@@ -30,14 +30,14 @@ function createAIResponse(message){
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
     }
-
-function speechSynthesis(message){
-    const voices = [];
-    const synth = window.speechSynthesis;
+    let voices = [];
+    let synth = window.speechSynthesis;
     voices = synth.getVoices();
-    const utterThis = new SpeechSynthesisUtterance(message);
-    for (const voice of voices){
-        if (voice.name === "Microsoft Mark - English (United States)"){
+
+function speechSynthesis(message) {
+    let utterThis = new SpeechSynthesisUtterance(message);
+    for (let voice of voices){
+        if (voice.name === "Google UK English Male"){
             utterThis.voice = voice;
         }
     }
