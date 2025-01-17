@@ -20,17 +20,18 @@ model = genai.GenerativeModel(
   model_name="gemini-1.5-pro",
   generation_config=generation_config,
   system_instruction="You are travis an AI lawyer who is supposed to help the user in any legal matter.",
-  tools = [
-    genai.protos.Tool(
-      google_search_retrieval = genai.protos.GoogleSearchRetrieval(
-        dynamic_retrieval_config = genai.protos.DynamicRetrievalConfig(
-          mode = genai.protos.DynamicRetrievalConfig.Mode.MODE_DYNAMIC,
-          dynamic_threshold = 0.4,
-        ),
-      ),
-    ),
-  ],
 )
+
+#tools = [
+#    genai.protos.Tool(
+#      google_search_retrieval = genai.protos.GoogleSearchRetrieval(
+#        dynamic_retrieval_config = genai.protos.DynamicRetrievalConfig(
+#          mode = genai.protos.DynamicRetrievalConfig.Mode.MODE_DYNAMIC,
+#          dynamic_threshold = 0.4,
+#        ),
+#      ),
+#    ),
+#  ],
 
 
     
@@ -41,7 +42,7 @@ chat_session = model.start_chat(
 
 def give_response(question):
     response = chat_session.send_message(question)
-    print(chat_session)
+    print(response)
     return response.text
  
 
