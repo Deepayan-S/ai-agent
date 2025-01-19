@@ -9,7 +9,7 @@ genai.configure(api_key=api_key)
 
 # Create the model
 generation_config = {
-  "temperature": 0.4,
+  "temperature": 1,
   "top_p": 0.95,
   "top_k": 40,
   "max_output_tokens": 8192,
@@ -17,21 +17,20 @@ generation_config = {
 }
 
 model = genai.GenerativeModel(
-  model_name="gemini-1.5-pro",
+  model_name="gemini-1.5-flash-8b",
   generation_config=generation_config,
   system_instruction="You are travis an AI lawyer who is supposed to help the user in any legal matter.",
 )
-
-#tools = [
-#    genai.protos.Tool(
-#      google_search_retrieval = genai.protos.GoogleSearchRetrieval(
-#        dynamic_retrieval_config = genai.protos.DynamicRetrievalConfig(
-#          mode = genai.protos.DynamicRetrievalConfig.Mode.MODE_DYNAMIC,
-#          dynamic_threshold = 0.4,
-#        ),
-#      ),
-#    ),
-#  ],
+#  tools = [
+ #   genai.protos.Tool(
+  #    google_search_retrieval = genai.protos.GoogleSearchRetrieval(
+   #     dynamic_retrieval_config = genai.protos.DynamicRetrievalConfig(
+    #      mode = genai.protos.DynamicRetrievalConfig.Mode.MODE_DYNAMIC,
+     #     dynamic_threshold = 0.4,
+      #  ),
+      #),
+    #),
+  #],
 
 
     
