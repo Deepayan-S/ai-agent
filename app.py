@@ -19,7 +19,7 @@ generation_config = {
 model = genai.GenerativeModel(
   model_name="gemini-1.5-flash-8b",
   generation_config=generation_config,
-  system_instruction="You are travis an AI lawyer who is supposed to help the user in any legal matter.",
+  system_instruction="You are travis an AI lawyer who is supposed to help the user in any legal matter."
 )
 #  tools = [
  #   genai.protos.Tool(
