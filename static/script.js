@@ -3,6 +3,9 @@ const synth = window.speechSynthesis;
 let inputField = document.getElementById("main");
 let ttsEnabled = true;
 let availableVoices = [];
+let pendingTimerId = null;
+let pendingStartMs = null;
+let pendingEl = null;
 
 // Initialize voices when available
 function loadVoices() {
@@ -31,6 +34,7 @@ inputField.addEventListener('keydown', function(e){
         const text = inputField.value;
         if (text != ""){
             createMessageBubble(text);
+            startPendingTimer();
             getResponse(text);
         }
         inputField.value="";        
@@ -44,7 +48,43 @@ function createMessageBubble(message){
     chatRow.innerHTML = `<pre class="chat-bubble pre-wrap" style="overflow: visible;">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
-    //console.log(message);
+}
+
+function renderPendingRow(){
+    const newChat = document.getElementById("chat-area");
+    const row = document.createElement('div');
+    row.className = 'status-row';
+    const status = document.createElement('div');
+    status.className = 'status-text';
+    status.textContent = 'Waiting for reply… 0.0s';
+    row.appendChild(status);
+    newChat.appendChild(row);
+    newChat.scrollTop = newChat.scrollHeight;
+    return status;
+}
+
+function startPendingTimer(){
+    clearPendingTimer();
+    pendingStartMs = Date.now();
+    pendingEl = renderPendingRow();
+    pendingTimerId = setInterval(() => {
+        if (!pendingEl) return;
+        const elapsed = (Date.now() - pendingStartMs) / 1000;
+        pendingEl.textContent = `Waiting for reply… ${elapsed.toFixed(1)}s`;
+    }, 100);
+}
+
+function stopPendingTimer(finalize=true){
+    if (pendingTimerId){
+        clearInterval(pendingTimerId);
+        pendingTimerId = null;
+    }
+    if (pendingEl && finalize){
+        const elapsed = (Date.now() - pendingStartMs) / 1000;
+        pendingEl.textContent = `Replied in ${elapsed.toFixed(1)}s`;
+    }
+    pendingEl = null;
+    pendingStartMs = null;
 }
 
 function createAIResponse(message){
@@ -55,19 +95,15 @@ function createAIResponse(message){
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
     speechSynthesisAI(message);
-    }
+}
 
-
-    
 function speechSynthesisAI(message) {
     if (!ttsEnabled) {
         return;
     }
     const voices = availableVoices;
     const utterThis = new SpeechSynthesisUtterance(message);
-    // Prefer a non-null voice if available
     if (voices && voices.length > 0) {
-        // Try to pick a reasonable default; fall back gracefully
         utterThis.voice = voices[3] || voices.find(v => /English|en/i.test(v.lang)) || voices[0];
     }
     synth.speak(utterThis);
@@ -80,10 +116,12 @@ function getResponse(prompt){
         contentType: 'application/json',
         data: JSON.stringify({ 'prompt' : prompt}),
         success: function(response){
+            stopPendingTimer(true);
             createAIResponse(response.response);
         },
         error: function(error){
             console.log(error);
+            stopPendingTimer(false);
         }
     });
 }
