@@ -1,6 +1,30 @@
 const synth = window.speechSynthesis;
 
 let inputField = document.getElementById("main");
+let ttsEnabled = true;
+let availableVoices = [];
+
+// Initialize voices when available
+function loadVoices() {
+    availableVoices = synth.getVoices() || [];
+}
+loadVoices();
+if (typeof speechSynthesis !== 'undefined') {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+const ttsToggleBtn = document.getElementById("tts-toggle");
+if (ttsToggleBtn) {
+    ttsToggleBtn.addEventListener('click', function(){
+        ttsEnabled = !ttsEnabled;
+        if (!ttsEnabled) {
+            synth.cancel();
+        }
+        ttsToggleBtn.textContent = `TTS: ${ttsEnabled ? 'On' : 'Off'}`;
+        ttsToggleBtn.classList.toggle('btn-outline-light', ttsEnabled);
+        ttsToggleBtn.classList.toggle('btn-outline-secondary', !ttsEnabled);
+    });
+}
 
 inputField.addEventListener('keydown', function(e){
     if (e.key =="Enter"){
@@ -36,10 +60,16 @@ function createAIResponse(message){
 
     
 function speechSynthesisAI(message) {
-    const voices = synth.getVoices();
+    if (!ttsEnabled) {
+        return;
+    }
+    const voices = availableVoices;
     const utterThis = new SpeechSynthesisUtterance(message);
-    console.log(voices);
-    utterThis.voice = voices[3];
+    // Prefer a non-null voice if available
+    if (voices && voices.length > 0) {
+        // Try to pick a reasonable default; fall back gracefully
+        utterThis.voice = voices[3] || voices.find(v => /English|en/i.test(v.lang)) || voices[0];
+    }
     synth.speak(utterThis);
 }
 
