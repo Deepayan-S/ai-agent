@@ -14,6 +14,7 @@ if (typeof speechSynthesis !== 'undefined') {
 }
 
 const ttsToggleBtn = document.getElementById("tts-toggle");
+const loadingEl = document.getElementById("loading");
 if (ttsToggleBtn) {
     ttsToggleBtn.addEventListener('click', function(){
         ttsEnabled = !ttsEnabled;
@@ -31,6 +32,7 @@ inputField.addEventListener('keydown', function(e){
         const text = inputField.value;
         if (text != ""){
             createMessageBubble(text);
+            if (loadingEl) loadingEl.style.display = 'block';
             getResponse(text);
         }
         inputField.value="";        
@@ -54,6 +56,7 @@ function createAIResponse(message){
     chatRow.innerHTML = `<pre class="chat-ai-response pre-wrap">${message}</pre>`;
     newChat.appendChild(chatRow);
     newChat.scrollTop = newChat.scrollHeight;
+    if (loadingEl) loadingEl.style.display = 'none';
     speechSynthesisAI(message);
     }
 
@@ -84,6 +87,7 @@ function getResponse(prompt){
         },
         error: function(error){
             console.log(error);
+            if (loadingEl) loadingEl.style.display = 'none';
         }
     });
 }

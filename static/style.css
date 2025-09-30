@@ -27,7 +27,7 @@ body{
     justify-content: space-between;
     gap: 1em;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0px;
 }
 .input-section{
     position: fixed;
@@ -109,6 +109,16 @@ input,textarea{
     height: 100%;
     width: 100%;
     scrollbar-width:none;
+}
+.loading{
+    display: none;
+    color: #fff;
+    padding: 0.5em 1em;
+    margin-top: 0.5em;
+    user-select: none;
+}
+.loading .loading-text{
+    margin-left: 0.5em;
 }
 .chat-ai-row{
     margin-top: 3em;
