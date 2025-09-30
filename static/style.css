@@ -4,8 +4,7 @@ body{
     min-height: 100vh;
     padding-top: 0px;
     padding-bottom: 0px;
-    width: 100%;
-    box-sizing: border-box;
+    width: 100vw;
     margin: 0px;
 }
 *:focus {
@@ -20,7 +19,6 @@ body{
     top: 0px;
     color: aliceblue;
     font-family: Bruno Ace;
-    padding: 0.5em 1em;
 }
 .input-section{
     position: fixed;
@@ -119,17 +117,4 @@ input,textarea{
 }
 .pre-wrap{
     white-space: pre-wrap;
-}
-/* Status row showing time until reply */
-.status-row{
-    display: flex;
-    margin-top: 1em;
-    width: 100%;
-    flex-direction: row;
-    justify-content: start;
-}
-.status-text{
-    color: #cfd8dc;
-    font-size: 0.9rem;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
 }
