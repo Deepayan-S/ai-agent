@@ -19,6 +19,15 @@ body{
     top: 0px;
     color: aliceblue;
     font-family: Bruno Ace;
+    padding: 0.5em 1em;
+}
+.top-nav-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .input-section{
     position: fixed;
